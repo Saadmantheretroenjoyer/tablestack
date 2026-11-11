@@ -58,7 +58,9 @@ function SideMark({ side }: { side: "front" | "back" }) {
  * (switches like the ones we use to turn projects on and off). Pointing at the card flips a switch
  * or presses the button.
  */
-function TeamArt({ side }: { side: "front" | "back" }) {
+const SIDE_LABEL = { back: "Back of house", front: "Front of house", host: "Host stand" } as const;
+
+function TeamArt({ side }: { side: "front" | "back" | "host" }) {
   return (
     <div className="team-art" aria-hidden="true">
       <div className="team-art-bar">
@@ -66,7 +68,15 @@ function TeamArt({ side }: { side: "front" | "back" }) {
         <i />
         <i />
       </div>
-      {side === "front" ? (
+      {side === "host" ? (
+        // A search page: our result climbs from third to first when the card is pointed at.
+        <div className="team-art-search">
+          <span className="team-art-query" />
+          <span className="team-art-result is-ours" />
+          <span className="team-art-result" />
+          <span className="team-art-result" />
+        </div>
+      ) : side === "front" ? (
         <div className="team-art-page">
           <span className="team-art-hero" />
           <span className="team-art-line" />
@@ -157,13 +167,14 @@ export default function AboutPage() {
         <h2 id="team-h" className="display text-[clamp(2.4rem,3.74vw,4.06rem)]" data-split="lines">
           The people <em className="text-accent">behind it.</em>
         </h2>
-        <ul className="mt-10 grid auto-rows-fr grid-cols-1 gap-5 md:mt-12 lg:grid-cols-2">
+        <ul className="mt-10 team-grid grid auto-rows-fr grid-cols-1 gap-5 md:mt-12 xl:grid-cols-3">
           {team.map((m, i) => (
             <li key={m.name} className={`team-card team-card-${m.side}`} data-reveal="rise" data-delay={i * 120}>
               <div>
-                <p className="team-card-side">{m.side === "back" ? "Back of house" : "Front of house"}</p>
+                <p className="team-card-side">{SIDE_LABEL[m.side]}</p>
                 <h3 className="team-card-name">{m.name}</h3>
                 <p className="team-card-role">{m.role}</p>
+                <p className="team-card-focus">{m.focus}</p>
               </div>
               <TeamArt side={m.side} />
               <div className="team-card-details">

@@ -188,6 +188,8 @@ export const team = [
   {
     name: "Dihan Islam Dhrubo",
     role: "Backend Developer",
+    /** One line on what this person looks after, shown under the role on the About page. */
+    focus: "Databases, APIs and the admin tools that keep orders, bookings and menus running.",
     /** Which half of a site this person builds: what customers see (front) or what the team uses (back). */
     side: "back",
     facebook: "https://www.facebook.com/dihanislam.dhrubo.5/",
@@ -199,6 +201,7 @@ export const team = [
   {
     name: "Saalim Saadman",
     role: "Frontend Developer",
+    focus: "The pages customers see: layouts, menus, ordering flows and how fast it all loads.",
     side: "front",
     facebook: "https://www.facebook.com/saalim.saadman.2025/",
     whatsapp: "01742777666",
@@ -206,6 +209,20 @@ export const team = [
     graduation: "Expected graduation September 2028",
     github: "https://github.com/Saadmantheretroenjoyer",
     portfolio: "https://saalim.space/",
+  },
+  {
+    name: "AKM Navil Islam",
+    role: "SEO & Digital Marketing Lead",
+    /** "host": the host stand, bringing guests in (search, social) and keeping projects moving. */
+    side: "host",
+    focus: "Gets your business found on Google, runs our social media and keeps every project on schedule.",
+    facebook: "https://www.facebook.com/akm.navil.islam",
+    /** A wa.me QR link rather than a number. */
+    whatsapp: "https://wa.me/qr/GLZHBLHFULBPL1",
+    study: "UCSI University Bangladesh Branch Campus, CS",
+    graduation: "Expected graduation January 2029",
+    github: "https://github.com/NavilIslam",
+    portfolio: "https://portfolio-gamma-liart-84.vercel.app/",
   },
 ] as const;
 

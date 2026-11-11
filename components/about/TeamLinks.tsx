@@ -31,15 +31,16 @@ export default function TeamLinks({ member }: { member: Member }) {
       ? [{ kind: "github" as const, label: "GitHub", href: member.github, detail: `See ${firstName}'s code and projects.`, destination: username ? `github.com/${username}` : "github.com" }]
       : []),
     ...(member.portfolio
-      ? [{ kind: "portfolio" as const, label: "Portfolio", href: member.portfolio, detail: `Explore ${firstName}'s selected work.`, destination: "saalim.space" }]
+      ? [{ kind: "portfolio" as const, label: "Portfolio", href: member.portfolio, detail: `Explore ${firstName}'s selected work.`, destination: new URL(member.portfolio).hostname.replace(/^www\./, "") }]
       : []),
     { kind: "facebook", label: "Facebook", href: member.facebook, detail: `Visit ${firstName}'s Facebook profile.`, destination: "facebook.com" },
     {
       kind: "whatsapp",
       label: "WhatsApp",
-      href: `https://wa.me/880${member.whatsapp.slice(1)}`,
+      // A phone number ("01...") or a ready-made wa.me link (e.g. a QR link).
+      href: member.whatsapp.startsWith("http") ? member.whatsapp : `https://wa.me/880${member.whatsapp.slice(1)}`,
       detail: `Message ${firstName} directly.`,
-      destination: member.whatsapp,
+      destination: member.whatsapp.startsWith("http") ? "WhatsApp chat" : member.whatsapp,
     },
   ];
   const current = active === null ? null : links[active];

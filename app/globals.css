@@ -2081,6 +2081,13 @@ html[data-mode="boh"] .about-stack-item:nth-child(2) .about-stack-card {
     font-size: 17px;
     font-weight: 700;
   }
+  .team-card-focus {
+    max-width: 38ch;
+    margin-top: 14px;
+    color: var(--fg-2);
+    font-size: 16px;
+    line-height: 1.5;
+  }
   .team-card-details { grid-column: 1 / -1; }
   .team-card:hover,
   .team-card:focus-within {
@@ -2131,6 +2138,37 @@ html[data-mode="boh"] .about-stack-item:nth-child(2) .about-stack-card {
   .team-card:hover .team-art-row:not(.is-on) u { background: var(--tomato); }
   .team-art-row.is-on u::after,
   .team-card:hover .team-art-row:not(.is-on) u::after { transform: translateX(10px); }
+  /* Host stand: the tomato card between the dark and light ones. */
+  .team-card-host {
+    --fg: var(--ink);
+    --fg-2: rgb(10 10 10 / 0.86);
+    --muted: rgb(10 10 10 / 0.68);
+    --rule: rgb(10 10 10 / 0.2);
+    --rule-strong: rgb(10 10 10 / 0.42);
+    --accent-text: #fff2ed;
+    background: var(--tomato);
+    color: var(--fg);
+  }
+  .team-card-host .team-preview { --surface: #fff2ed; }
+  .team-art-search { display: grid; gap: 7px; padding: 12px; background: #fff2ed; }
+  .team-art-search > span { display: block; border-radius: 6px; }
+  .team-art-query { height: 16px; border-radius: 8px !important; box-shadow: inset 0 0 0 1.5px rgb(10 10 10 / 0.22); }
+  .team-art-result {
+    height: 22px;
+    background: rgb(10 10 10 / 0.08);
+    transform: translateY(-29px);
+    transition: transform 0.5s var(--ease-out-quart), background-color 0.3s;
+  }
+  .team-art-result.is-ours { background: var(--ink); transform: translateY(58px); }
+  .team-card:hover .team-art-result { transform: translateY(0); }
+  .team-card:hover .team-art-result.is-ours { background: var(--tomato); }
+  /* Three across on wide screens: each card is narrow, so the drawing sits above the name. */
+  @media (min-width: 1280px) {
+    .team-grid .team-card { grid-template-columns: minmax(0, 1fr); align-content: start; }
+    .team-grid .team-art { order: -1; justify-self: start; display: flex; flex-direction: column; width: 180px; min-height: 172px; }
+    .team-grid .team-art > div:last-child { flex: 1; align-content: start; }
+    .team-grid .team-card-name { font-size: clamp(1.9rem, 2.3vw, 2.5rem); }
+  }
   /* Phones: the drawing sits above the name. */
   @media (max-width: 560px) {
     .team-card { grid-template-columns: minmax(0, 1fr); }
